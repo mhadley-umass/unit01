@@ -2,6 +2,7 @@ import express from 'express';
 import apiRouter from './routes/api.js';
 
 const app = express();
+app.set("view engine", "ejs");
 const PORT = 3000;
 
 app.use('/api', apiRouter);
@@ -30,6 +31,10 @@ app.get('/api/info', (req, res) => {
   res.json({ name: 'Web Programming Course', version: '1.0.0' });
 });
 
+app.get("/about", (req, res) => {
+  res.render("about", { title: "About" });
+});
+
 app.get('/api/error', (req, res) => {
   res.json({ status: 400, message: 'Bad request' });
 });
@@ -43,10 +48,6 @@ app.get('/search', (req, res) => {
   const term = req.query.term || 'nothing';
   const limit = parseInt(req.query.limit) || 5;
   res.send(`Searching for "${term}", showing ${limit} results.`);
-});
-
-app.get('/about', (req, res) => {
-  res.send('This is a web programming course.');
 });
 
 app.use((req, res) => {
