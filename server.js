@@ -68,3 +68,4 @@ app.listen(PORT, () => {
 // BUG: off-by-one introduced here
 // checkpoint 4
 // checkpoint 5
+// stable checkpoint"
